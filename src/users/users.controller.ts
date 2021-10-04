@@ -13,6 +13,10 @@ export class UsersController {
     description: '성공',
     type: UserDto,
   })
+  @ApiResponse({
+    status: 500,
+    description: '서버에러',
+  })
   @ApiOperation({ summary: '내 정보 조회' })
   @Get()
   getUsers(@Req() req) {}

@@ -13,9 +13,9 @@ import { UsersModule } from './users/users.module';
 import { WorkspacesModule } from './workspaces/workspaces.module';
 import { DmsModule } from './dms/dms.module';
 import { ChannelsModule } from './channels/channels.module';
+import * as ormconfig from '../ormconfig';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import * as ormconfig from '../ormconfig';
 
 @Module({
   imports: [
@@ -26,32 +26,32 @@ import * as ormconfig from '../ormconfig';
     WorkspacesModule,
     DmsModule,
     ChannelsModule,
-    //TypeOrmModule.forRoot(ormconfig),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.MYSQL_HOST,
-      port: 3306,
-      username: 'admin',
-      password: process.env.MYSQL_PASSWORD,
-      database: 'nestDB',
-      entities: [
-        ChannelChats,
-        ChannelMembers,
-        Channels,
-        DMs,
-        Mentions,
-        Users,
-        WorkspaceMembers,
-        Workspaces,
-      ],
-      migrations: [__dirname + '/src/migrations/*.ts'],
-      cli: { migrationsDir: 'src/migrations' },
-      autoLoadEntities: true,
-      charset: 'utf8mb4',
-      synchronize: false,
-      logging: true,
-      keepConnectionAlive: true,
-    }),
+    TypeOrmModule.forRoot(ormconfig),
+    // TypeOrmModule.forRoot({
+    //   type: 'mysql',
+    //   host: process.env.MYSQL_HOST,
+    //   port: 3306,
+    //   username: 'admin',
+    //   password: process.env.MYSQL_PASSWORD,
+    //   database: 'nestDB',
+    //   entities: [
+    //     ChannelChats,
+    //     ChannelMembers,
+    //     Channels,
+    //     DMs,
+    //     Mentions,
+    //     Users,
+    //     WorkspaceMembers,
+    //     Workspaces,
+    //   ],
+    //   migrations: [__dirname + '/src/migrations/*.ts'],
+    //   cli: { migrationsDir: 'src/migrations' },
+    //   autoLoadEntities: true,
+    //   charset: 'utf8mb4',
+    //   synchronize: false,
+    //   logging: true,
+    //   keepConnectionAlive: true,
+    // }),
   ],
   controllers: [AppController],
   providers: [AppService],

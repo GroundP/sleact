@@ -1,5 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-//import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import { ChannelChats } from './src/entities/ChannelChats';
 import { ChannelMembers } from './src/entities/ChannelMembers';
 import { Channels } from './src/entities/Channels';
@@ -9,7 +9,9 @@ import { Users } from './src/entities/Users';
 import { WorkspaceMembers } from './src/entities/WorkspaceMembers';
 import { Workspaces } from './src/entities/Workspaces';
 
-//dotenv.config();
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
 const config: TypeOrmModuleOptions = {
   type: 'mysql',
   host: process.env.MYSQL_HOST,

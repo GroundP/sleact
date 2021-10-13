@@ -14,7 +14,7 @@ async function bootstrap() {
   const document: OpenAPIObject = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
 
-  await app.listen(8000);
+  await app.listen(process.env.PORT);
 }
 
 bootstrap();
